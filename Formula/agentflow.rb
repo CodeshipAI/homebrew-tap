@@ -1,4 +1,6 @@
 class Agentflow < Formula
+  include Language::Python::Virtualenv
+
   desc "Parallel and DAG orchestration for Claude, Codex, and Kimi agents"
   homepage "https://github.com/CodeshipAI/agentflow"
   url "https://github.com/CodeshipAI/agentflow.git", branch: "master"
@@ -9,8 +11,7 @@ class Agentflow < Formula
   depends_on "python@3.12"
 
   def install
-    venv = virtualenv_create(libexec, "python3.12")
-    venv.pip_install_and_link buildpath
+    virtualenv_install_with_resources
   end
 
   test do
